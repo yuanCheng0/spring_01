@@ -10,6 +10,8 @@ import com.cy.demo4.User;
 
 public class Demo4Test {
 
+	//提交到了github上了吗？？？？？、
+	
 	@Test
 	public void run1() {
 		// 创建工厂，加载配置文件，CustomerDaoImpl创建了，CustomerServiceImpl创建了
