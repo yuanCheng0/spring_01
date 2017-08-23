@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 使用bean标签 -->
+    <!-- <bean id="userService" class="com.cy.serviceImpl.UserServiceImpl" init-method="init" destroy-method="destory"></bean> -->
+	<bean id="userService" class="com.cy.serviceImpl.UserServiceImpl">
+    	<property name="name" value="小风"/>
+    </bean>
+    
+    <!-- 演示依赖注入 -->
+    <bean id="customerDao" class="com.cy.serviceImpl.CustomerDaoImpl"></bean>
+    <bean id="customerService" class="com.cy.serviceImpl.CustomerServiceImpl">
+    	<property name="customerDao" ref="customerDao"/>
+    </bean>
+    
+    <!-- 演示构造方法注入的方式 -->
+    <bean id="car1" class="com.cy.demo4.Car1">
+    <!-- <constructor-arg name="cname" value="奇瑞qq"/>
+    <constructor-arg name="price" value="25000"/> -->
+    
+    <constructor-arg index="0" value="changan"/>
+    <constructor-arg index="1" value="45000"/>
+    </bean>
+    
+    <bean id="person" class="com.cy.demo4.Person">
+    	<constructor-arg name="pname" value="美美"/>
+    	<constructor-arg name="car1" ref="car1"/>
+    </bean>
+    
+    <!-- 注入集合 -->
+    <bean id="user" class="com.cy.demo4.User">
+    	<property name="arrs">
+    		<list>
+    			<value>哈哈</value>
+    			<value>hehe</value>
+    			<value>嘎嘎</value>
+    		</list>
+    	</property>
+    	
+    	<property name="list">
+    		<list>
+    			<ref bean="person"/>
+    			<value>美美</value>
+    			<value>王八</value>
+    		</list>
+    	</property>
+    	
+    	<property name="pro">
+    		<props>
+    			<prop key="username">root</prop>
+    			<prop key="password">1234</prop>
+    		</props>
+    	</property>
+    </bean>
+</beans>
